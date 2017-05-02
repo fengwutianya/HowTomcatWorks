@@ -84,7 +84,6 @@ import javax.servlet.ServletContext;
 import javax.naming.NamingException;
 import javax.naming.Binding;
 import javax.naming.NameClassPair;
-import javax.naming.NamingEnumeration;
 import javax.naming.directory.DirContext;
 import org.apache.naming.resources.Resource;
 import org.apache.naming.resources.DirContextURLStreamHandler;

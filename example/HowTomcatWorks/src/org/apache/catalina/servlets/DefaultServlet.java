@@ -95,7 +95,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.naming.NamingException;
 import javax.naming.InitialContext;
-import javax.naming.NamingEnumeration;
 import javax.naming.NameClassPair;
 import javax.naming.directory.DirContext;
 import javax.naming.directory.Attributes;

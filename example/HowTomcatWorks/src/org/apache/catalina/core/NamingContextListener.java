@@ -68,7 +68,6 @@ package HowTomcatWorks.src.org.apache.catalina.core;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Hashtable;
-import java.util.Enumeration;
 import java.util.StringTokenizer;
 import javax.naming.NamingException;
 import javax.naming.Reference;

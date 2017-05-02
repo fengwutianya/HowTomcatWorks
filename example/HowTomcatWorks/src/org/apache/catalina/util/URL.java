@@ -531,7 +531,7 @@ public final class URL implements Serializable {
             normalized = normalized.substring(0, normalized.length() - 1);
 
         // Resolve occurrences of "/.." at the end of the normalized path
-        if (normalized.endsWith("/..")) {
+        if (normalized.endsWith("/")) {
             int index = normalized.length() - 3;
             int index2 = normalized.lastIndexOf('/', index - 1);
             if (index2 < 0)

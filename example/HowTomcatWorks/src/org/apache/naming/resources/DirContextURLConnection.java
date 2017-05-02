@@ -73,7 +73,6 @@ import java.util.Date;
 import java.util.Enumeration;
 import java.util.Vector;
 import javax.naming.NamingException;
-import javax.naming.NamingEnumeration;
 import javax.naming.NameClassPair;
 import javax.naming.directory.DirContext;
 import javax.naming.directory.Attribute;

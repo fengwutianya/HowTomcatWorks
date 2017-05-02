@@ -92,7 +92,6 @@ import java.util.jar.Attributes.Name;
 
 import javax.naming.directory.DirContext;
 import javax.naming.NamingException;
-import javax.naming.NamingEnumeration;
 import javax.naming.NameClassPair;
 
 import org.apache.catalina.Lifecycle;

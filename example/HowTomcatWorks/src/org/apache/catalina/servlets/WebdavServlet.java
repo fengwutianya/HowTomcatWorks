@@ -88,7 +88,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.naming.NamingException;
-import javax.naming.NamingEnumeration;
 import javax.naming.NameClassPair;
 import javax.naming.directory.DirContext;
 import org.apache.naming.resources.Resource;

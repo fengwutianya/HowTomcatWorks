@@ -310,8 +310,8 @@ public void run() throws IOException {
     }
 
     if ((command.indexOf(File.separator + "." + File.separator) >= 0)
-        || (command.indexOf(File.separator + "..") >= 0)
-        || (command.indexOf(".." + File.separator) >= 0)) {
+        || (command.indexOf(File.separator + "") >= 0)
+        || (command.indexOf("" + File.separator) >= 0)) {
         throw new IOException(this.getClass().getName()
                               + "Illegal Character in CGI command "
                               + "path ('.' or '..') detected.  Not "
