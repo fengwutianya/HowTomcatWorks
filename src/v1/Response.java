@@ -1,11 +1,15 @@
 package v1;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 
 /**
  * Created by xuan on 2017/5/2 0002.
  */
 public class Response {
+    private static final int BUFFER_SISE = 1024;
     private OutputStream outputStream;
     private Request request;
 
@@ -17,7 +21,32 @@ public class Response {
         this.request = request;
     }
 
-    public void sendStaticResource() {
-        //todo
+    public void sendStaticResource() throws IOException {
+        byte[] bytes = new byte[BUFFER_SISE];
+        FileInputStream fis = null;
+        try {
+            File file = new File(HttpServer.WEB_ROOT, request.getUri());
+            if (file.exists()) {
+                fis = new FileInputStream(file);
+                int ch = fis.read(bytes, 0, BUFFER_SISE);
+                while (ch != -1) {
+                    outputStream.write(bytes, 0, ch);
+                    ch = fis.read(bytes, 0, BUFFER_SISE);
+                }
+            } else {
+                String errorMessage = "HTTP/1.1 404 File Not Found\r\n" +
+                        "Content-Type: text/html\r\n" +
+                        "Content-Length: 23\r\n" +
+                        "\r\n" +
+                        "<h1>File Not Found</h1>";
+                outputStream.write(errorMessage.getBytes());
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        } finally {
+            if (fis != null) {
+                fis.close();
+            }
+        }
     }
 }

@@ -44,19 +44,21 @@ public class HttpServer {
                 response.setRequest(request);
                 response.sendStaticResource();
 
+                socket.close();
+
+//                String uri = request.getUri();
+//                System.out.println(uri);
                 shutdown = request.getUri().equals(SHUTDOWN_COMMAND);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 continue;   //unnecessary
-            } finally {
-                if (socket != null) {
-                    try {
-                        socket.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
             }
         }
+    }
+
+    public static void main(String[] args) {
+//        System.out.println(System.getProperty("user.dir"));
+        HttpServer server = new HttpServer();
+        server.await();
     }
 }
