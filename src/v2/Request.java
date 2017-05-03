@@ -18,6 +18,7 @@ public class Request implements ServletRequest {
 
     public Request(InputStream inputStream) {
         this.inputStream = inputStream;
+//        System.out.println(inputStream);
     }
 
     public String getUri() {
@@ -36,7 +37,7 @@ public class Request implements ServletRequest {
 
         StringBuffer request = new StringBuffer(2048);
         for (int j = 0; j < i; j++) {
-            request.append((char)bytes[i]);
+            request.append((char)bytes[j]);
         }
         System.out.println(request.toString());
         uri = parseUri(request.toString());

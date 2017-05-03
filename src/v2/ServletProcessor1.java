@@ -1,5 +1,9 @@
 package v2;
 
+import javax.servlet.Servlet;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -25,7 +29,22 @@ public class ServletProcessor1 {
             urls[0] = new URL(null, repository, streamHandler);
             loader = new URLClassLoader(urls);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.toString());
+        }
+
+        Class myClass = null;
+        try {
+            myClass = loader.loadClass(servletName);
+        } catch (ClassNotFoundException e) {
+            System.out.println(e.toString());
+        }
+
+        Servlet servlet = null;
+        try {
+            servlet = (Servlet) myClass.newInstance();
+            servlet.service((ServletRequest)request, (ServletResponse)response);
+        } catch (InstantiationException | IOException | ServletException | IllegalAccessException e) {
+            System.out.println(e.toString());
         }
     }
 }
