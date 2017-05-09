@@ -59,7 +59,7 @@ public class HttpRequestLine {
             for (int i = 0; i < end; i++) {
                 if (uri[pos+i] != buf[i])
                     break;
-                if (i == end-1)
+                if (i == (end-1))
                     return pos;
             }
             pos++;

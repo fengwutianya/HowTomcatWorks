@@ -7,19 +7,30 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
-import java.util.Collection;
-import java.util.Enumeration;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by xuan on 2017/5/8 0008.
  */
 public class HttpRequest implements HttpServletRequest {
     private InputStream input;
+    protected HashMap headers = new HashMap();
+    protected ArrayList cookies = new ArrayList();
 
     public HttpRequest(InputStream input) {
         this.input = input;
+    }
+
+    public void addHeader(String name, String value) {
+        name = name.toLowerCase();
+        synchronized (headers) {
+            ArrayList values = (ArrayList)headers.get(name);
+            if (values == null) {
+                values = new ArrayList();
+                headers.put(name, values);
+            }
+            values.add(value);
+        }
     }
 
     @Override
