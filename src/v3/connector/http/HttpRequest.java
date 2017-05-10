@@ -16,9 +16,24 @@ public class HttpRequest implements HttpServletRequest {
     private InputStream input;
     protected HashMap headers = new HashMap();
     protected ArrayList cookies = new ArrayList();
+    private String queryString;
+    private String requestedSessionId;
+    private boolean requestedSessionURL;
 
     public HttpRequest(InputStream input) {
         this.input = input;
+    }
+
+    public void setRequestedSessionURL(boolean requestedSessionURL) {
+        this.requestedSessionURL = requestedSessionURL;
+    }
+
+    public void setQueryString(String queryString) {
+        this.queryString = queryString;
+    }
+
+    public void setRequestedSessionId(String requestedSessionId) {
+        this.requestedSessionId = requestedSessionId;
     }
 
     public void addHeader(String name, String value) {

@@ -1,7 +1,5 @@
 package v3.connector.http;
 
-import com.sun.xml.internal.messaging.saaj.packaging.mime.Header;
-
 /**
  * Created by xuan on 2017/5/9 0009.
  */
