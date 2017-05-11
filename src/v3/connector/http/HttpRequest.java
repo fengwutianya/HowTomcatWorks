@@ -18,10 +18,38 @@ public class HttpRequest implements HttpServletRequest {
     protected ArrayList cookies = new ArrayList();
     private String queryString;
     private String requestedSessionId;
+    private String method;
+    private String uri;
+    private String protocol;
+    private int contentLength;
+    private String contentType;
     private boolean requestedSessionURL;
+    private boolean requestedSessionCookie;
 
     public HttpRequest(InputStream input) {
         this.input = input;
+    }
+
+    public void addCookie(Cookie cookie) {
+        synchronized (cookies) {
+            cookies.add(cookie);
+        }
+    }
+
+    public void setRequestedSessionCookie(boolean requestedSessionCookie) {
+        this.requestedSessionCookie = requestedSessionCookie;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
     }
 
     public void setRequestedSessionURL(boolean requestedSessionURL) {
@@ -228,9 +256,13 @@ public class HttpRequest implements HttpServletRequest {
 
     }
 
+    public void setContentLength(int contentLength) {
+        this.contentLength = contentLength;
+    }
+
     @Override
     public int getContentLength() {
-        return 0;
+        return contentLength;
     }
 
     @Override
@@ -238,9 +270,13 @@ public class HttpRequest implements HttpServletRequest {
         return 0;
     }
 
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
     @Override
     public String getContentType() {
-        return null;
+        return contentType;
     }
 
     @Override
