@@ -2,6 +2,9 @@ package v3;
 
 
 import v3.connector.http.HttpRequest;
+import v3.connector.http.HttpResponse;
+
+import java.io.IOException;
 
 public class StaticResourceProcessor {
 

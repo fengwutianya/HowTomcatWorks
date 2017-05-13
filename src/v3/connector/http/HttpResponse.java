@@ -2,11 +2,8 @@ package v3.connector.http;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Collection;
 import java.util.Locale;
 
@@ -14,6 +11,8 @@ import java.util.Locale;
  * Created by xuan on 2017/5/9 0009.
  */
 public class HttpResponse implements HttpServletResponse {
+    private static final int BUFFER_SIZE = 1024;
+
     private OutputStream output;
     private HttpRequest request;
 
@@ -207,5 +206,26 @@ public class HttpResponse implements HttpServletResponse {
     @Override
     public Locale getLocale() {
         return null;
+    }
+
+    public void sendStaticResource() throws IOException {
+        byte[] buffer = new byte[BUFFER_SIZE];
+        FileInputStream fis = null;
+        try {
+            File file = new File(Constants.WEB_ROOT, request.getRequestURI());
+            fis = new FileInputStream(file);
+            int n = fis.read(buffer, 0, BUFFER_SIZE);
+            while (n != -1) {
+                output.write(buffer, 0, n);
+                n = fis.read(buffer, 0, BUFFER_SIZE);
+            }
+        } catch (FileNotFoundException e) {
+            String errorMessage = "HTTP/1.1 404 File Not Found\r\n" +
+                    "Content-Type: text/html\r\n" +
+                    "Content-Length: 23\r\n" +
+                    "\r\n" +
+                    "<h1>File Not Found</h1>";
+            output.write(errorMessage.getBytes());
+        }
     }
 }

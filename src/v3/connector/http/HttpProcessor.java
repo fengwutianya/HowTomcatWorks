@@ -2,6 +2,8 @@ package v3.connector.http;
 
 import org.apache.catalina.util.RequestUtil;
 import org.apache.catalina.util.StringManager;
+import v3.ServletProcessor;
+import v3.StaticResourceProcessor;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
